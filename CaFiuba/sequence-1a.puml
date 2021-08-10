@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Actor 102105
+
+participant Pedido as ped
+participant Cafe as cafe
+activate 102105
+102105 --> ped: iniciarPedido()
+102105 --> ped: agregarCafe(Latte, boolean traeVaso)
+102105 --> ped: agregarCafe(Espresso, boolean traeVaso)
+
+102105 --> ped: comprarCafe()
+activate ped
+
+loop por cada cafe en el pedido
+ped --> cafe: obtenerPrecio()
+activate cafe
+cafe-->cafe: obtenerTamaño()
+cafe-->cafe:
+cafe --> ped: int: precio
+deactivate cafe
+end
+
+ped --> 102105: int:total
+deactivate ped
+
+
+
+
+@enduml

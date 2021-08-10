@@ -1,0 +1,45 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Actor 102105
+
+participant Pedido as ped order 1
+participant "Cafe:Latte" as latte order 3
+participant "Cafe:Espresso" as espresso order 2
+participant "Tamaño: PaQueTanto" as paq order 4
+participant "Estilo: FoamArtPrincipiante" as est order 5
+
+
+activate 102105
+102105 --> ped: iniciarPedido()
+102105 --> ped: agregarCafe(Latte, boolean traeVaso)
+102105 --> ped: agregarCafe(Espresso, boolean traeVaso)
+102105 --> ped: comprar()
+activate ped
+
+
+ped --> espresso: obtenerPrecio()
+activate espresso
+espresso --> espresso: tieneDescuentoPorVaso(boolean)
+espresso --> ped: int: precioEspresso
+deactivate espresso
+
+ped --> latte: obtenerPrecio()
+activate latte
+
+latte --> paq: obtenerPrecio()
+activate paq
+paq --> latte: int: precioTamaño
+latte --> est: obtenerPrecio()
+deactivate paq
+
+activate est
+est --> latte: int: precioEstilo
+deactivate est
+latte --> latte: tieneDescuentoPorVaso(boolean)
+latte --> ped: int: precioLatte
+deactivate latte
+ped --> 102105: int:totalPedido
+
+
+@enduml

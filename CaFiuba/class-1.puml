@@ -1,0 +1,38 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+class Pedido{
+    +iniciarPedido()
+    +agregarCafe()
+    +comprarCafe()
+}
+
+interface Cafe{
+    +obtenerPrecio()
+}
+
+class Latte implements Cafe{
+
+}
+class CafeFrio implements Cafe{
+
+}
+class Americano implements Cafe{
+
+}
+class Espresso implements Cafe{
+
+}
+
+interface Tamaño
+
+interface Estilo
+Latte --> Tamaño
+Latte --> Estilo
+CafeFrio --> Tamaño
+
+Pedido --> Cafe
+
+
+@enduml

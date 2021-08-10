@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class FoamArtPrincipiante implements Estilo
+class FoamArtExperto implements Estilo
+class Normal implements Estilo
+
+@enduml

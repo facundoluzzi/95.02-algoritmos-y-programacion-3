@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+actor AlgoMail
+participant AlgoMail as algo order 1
+participant Simple as simple order 2
+participant User as user order 3
+
+AlgoMail --> algo: loguearse(user, credencial)
+activate AlgoMail
+algo --> simple: verificar(user, credencial)
+activate algo
+loop Hasta encontrar usuario
+    simple --> user: verificar(user, credencial)
+    user --> simple: boolean: soyElUsuario
+end
+activate simple
+return true
+return true
+@enduml

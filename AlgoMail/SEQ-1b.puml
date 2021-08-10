@@ -1,0 +1,30 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+actor Actor
+participant Actor as algo order 1
+participant Simple as simple order 3
+participant Multiple as multiple order 2
+participant User as user order 4
+
+Actor --> algo: loguearse(user, credencial)
+
+algo --> multiple: verificacionInicial(user, credencial)
+multiple --> simple: verificar(user, credencial)
+
+loop Cada usuario
+    simple --> user: verificar(user, credencial)
+end
+user --> simple: true
+simple --> multiple: true
+multiple --> algo: Multiple(user, users)
+algo --> Actor: Multiple(user, users)
+Actor --> multiple: verificacionSecundaria(user, lcredencial)
+multiple --> simple: verificar(user, credencial)
+loop Cada usuario
+    simple --> user: verificar(user, credencial)
+end
+user --> simple: false
+simple --> multiple: false
+multiple --> algo: false
+algo --> Actor: false
+@enduml

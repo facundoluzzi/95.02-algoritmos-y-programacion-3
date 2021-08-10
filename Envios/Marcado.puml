@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/class-diagram
+class MarcadoHaciaArriba implements Marcado
+class MarcadoDiscreto implements Marcado
+class MarcadoConBaterias implements Marcado
+class NoMarcado implements Marcado
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Actor actor
+
+participant Evento as event order 1
+participant Entrada as entrada order 2
+participant TipoEntrada as tipo order 3
+
+actor --> event: cantidadEntradas([8, 20])
+loop para cada usuario
+event --> entrada: obtenerEntrada()
+return 1
+end
+
+
+event --> event: hayEntradasDisponibles(2)
+event --> actor: 2
+@enduml

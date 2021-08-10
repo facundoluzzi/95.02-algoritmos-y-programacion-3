@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/class-diagram
+class EntradaMayor implements TipoEntrada
+class EntradaMenor implements TipoEntrada
+class EntradaComun implements TipoEntrada
+
+
+@enduml

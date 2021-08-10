@@ -1,0 +1,14 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Actor Persona
+
+participant Sube as sube order 1
+
+Persona --> sube: pagarPasaje(int valor)
+activate sube
+sube --> sube: cumpleAños()
+sube --> sube: creditoSuficiente(int valor)
+sube --> sube: restarSaldo(int valor)
+
+@enduml

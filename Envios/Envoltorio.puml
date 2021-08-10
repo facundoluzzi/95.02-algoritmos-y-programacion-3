@@ -1,0 +1,7 @@
+@startuml
+'https://plantuml.com/class-diagram
+class EnvoltorioDeRegalo implements Envoltorio
+class EnvoltorioNegro implements Envoltorio
+class EnvoltorioAntiNuclear implements Envoltorio
+class EnvoltorioNulo implements Envoltorio
+@enduml

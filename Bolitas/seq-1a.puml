@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+Actor actor
+participant Circuito as circuito order 1
+participant TramosTerminal as tramoterm order 2
+participant TramoAnterior as tramo order 3
+
+activate circuito
+actor --> circuito: estaConfigurado()
+    loop para cada terminal
+        circuito--> tramoterm: estaConfigurado()
+        loop recursivamente hasta el inicial
+            tramoterm--> tramo: estaConfigurado()
+            return boolean: estaConfigurado
+        end
+        tramoterm-->circuito: boolean: estaConfigurado
+    end
+circuito-->actor: boolean:estaConfigurado
+deactivate circuito
+
+
+@enduml

@@ -1,0 +1,19 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Actor Persona
+
+participant Sube as sube order 1
+participant "TarifaSocial: TarifaNula" as tarifa order 2
+
+Persona --> sube: pagarPasaje(int valor)
+activate sube
+sube --> sube: cumpleAños()
+sube --> sube: false
+sube --> sube: creditoSuficiente(int valor)
+sube --> sube: false
+sube --> tarifa: creditoSuficiente(int valor)
+tarifa --> sube: false
+sube --> Persona: CreditoInsuficienteException
+
+@enduml

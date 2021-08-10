@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+actor actor
+participant Envio as envio order 1
+participant Paquete as paquete order 3
+participant "TipoEnvio:SuperVeloz" as tipo order 2
+participant Envoltorio as envoltorio order 4
+participant Marcado as marcado order 5
+
+
+actor --> envio: precioEnvio(paquete)
+envio --> tipo: precio(paquete)
+tipo --> paquete: distancia()
+return 150
+tipo --> envio :M*150
+
+envio --> paquete: costosAdicionales()
+loop cadaEnvoltorio
+    paquete --> envoltorio: obtenerCosto()
+    return costo
+end
+
+paquete --> envio: adicionales
+
+envio --> envio: calcularPrecioFinal(adicionales, M*150)
+envio --> actor: int:total
+
+@enduml

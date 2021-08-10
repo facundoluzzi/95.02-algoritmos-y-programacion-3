@@ -1,0 +1,8 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Grande implements Tamaño
+class ReGrande implements Tamaño
+class PaQueTanto implements Tamaño
+
+@enduml

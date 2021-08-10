@@ -1,0 +1,29 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+actor actor
+participant Envio as envio order 1
+participant Paquete as paquete order 3
+participant "TipoEnvio:SuperVeloz" as tipo order 2
+participant EnvoltorioAntiNuclear as envolAntiNuc order 4
+participant EnvoltorioRegalo as envolReg order 5
+
+
+actor --> envio: precioEnvio(paquete)
+envio --> tipo: precio(paquete)
+tipo --> paquete: distancia()
+return 150
+tipo --> envio :M*150
+
+envio --> paquete: costosAdicionales()
+
+paquete --> envolAntiNuc: obtenerCosto()
+return int: costo
+paquete --> envolReg: obtenerCosto()
+return int: costo
+paquete --> envio: int: adicional
+
+envio --> envio: calcularPrecioFinal(adicional, M*150)
+
+envio --> actor: int: total
+@enduml
