@@ -1,0 +1,52 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+Actor actor
+participant AlgoBar order 1
+participant "Sala: Gastronomia" as gastr order 2
+participant "Sala: Cine" as cine order 3
+participant "SocioPremium: 105229" as visitante order 5
+participant Reserva as reserva order 4
+participant Consumo as consumo order 5
+
+
+actor --> AlgoBar: reservar(gastronomia, 105229, 0)
+AlgoBar --> gastr: reservar(105229, 0)
+actor --> AlgoBar: consumoDe(105229, 1000)
+AlgoBar --> gastr: generarConsumo(105229, 1000)
+gastr --> gastr: buscarCliente(105229)
+gastr --> visitante: agregarConsumo(Consumo)
+
+actor --> AlgoBar: consumoDe(105229, 3000)
+AlgoBar --> gastr: generarConsumo(105229, 3000)
+gastr --> gastr: buscarCliente(105229)
+gastr --> visitante: agregarConsumo(Consumo)
+
+actor --> AlgoBar: eliminarReserva(105229, gastronomia)
+AlgoBar --> gastr: eliminarReserva(105229)
+actor --> AlgoBar: reservar(cine, 105229, 4)
+AlgoBar --> cine: reservar(105229, 4)
+cine --> reserva: validarReserva(105229, 4)
+reserva --> visitante: obtenerClasificacion()
+visitante --> reserva: "SocioPremium"
+
+actor --> AlgoBar: consumoDe(105229, 10000)
+AlgoBar --> cine: generarConsumo(105229, 10000)
+cine --> cine: buscarCliente(105229)
+cine --> visitante: agregarConsumo(10000)
+
+actor --> AlgoBar: eliminarReserva(105229, cine)
+AlgoBar --> cine: eliminarReserva(105229)
+
+actor --> AlgoBar: obtenerResumen(105229)
+AlgoBar --> visitante: obtenerConsumoTotal()
+loop
+visitante --> consumo: obtenerTotal()
+consumo --> visitante: int: totalConsumo 
+end
+visitante --> visitante: obtenerDescuento(13000)
+visitante --> AlgoBar: 13000 * 0.8 + 1000
+AlgoBar --> actor: 13000 * 0.8 + 1000
+
+@enduml
