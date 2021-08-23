@@ -1,0 +1,34 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+
+Actor actor
+participant AlgoBar order 1
+participant "Sala: Gastronomia" as gastr order 2
+participant "NoSocio: 105229" as visitante order 5
+participant Consumo as consumo order 6
+
+actor --> AlgoBar: reservar(gastronomia, 105229, 0)
+AlgoBar --> gastr: reservar(105229, 0)
+actor --> AlgoBar: consumoDe(105229, 1500)
+AlgoBar --> gastr: generarConsumo(105229, 1500)
+gastr --> gastr: buscarCliente(105229)
+gastr --> visitante: agregarConsumo(Consumo)
+
+actor --> AlgoBar: eliminarReserva(105229, gastronomia)
+AlgoBar --> gastr: eliminarReserva(105229)
+
+actor --> AlgoBar: obtenerResumen(105229)
+AlgoBar --> visitante: obtenerConsumoTotal()
+loop
+visitante --> consumo: obtenerTotal()
+consumo --> visitante: int: totalConsumo 
+end
+visitante --> visitante: obtenerDescuento(1500)
+visitante --> AlgoBar: 1500 * 1.0
+AlgoBar --> actor: 1500 * 1.0
+
+actor --> AlgoBar: cobrar(105229, 1500)
+AlgoBar --> visitante: cobrar(1500)
+
+@enduml
